@@ -36,5 +36,5 @@ jobs:
     - name: tag and push image 
       run: |
         docker tag ${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }} ${{ env.REGISTRY }}/${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }}
-        docker push ${{ REGISTRY }}/${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }}
+        docker push ${{ env.REGISTRY }}/${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }}
         docker logout
