@@ -38,10 +38,8 @@ jobs:
         echo ${{ secrets.REGISTRY }}
         echo ${{ vars.REGISTRY }}
         
-#    - name: tag and push image 
-#      env:
-#        REG: ${{ env.REGISTRY }}
-#      run: |
-#        docker tag ${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }} ${{ REG }}/${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }}
-#        docker push ${{ REG }}/${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }}
-#        docker logout
+    - name: tag and push image 
+      run: |
+        docker tag ${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }} ${{ ${{ vars.REGISTRY }} }}/${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }}
+        docker push ${{ ${{ vars.REGISTRY }} }}/${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }}
+        docker logout
