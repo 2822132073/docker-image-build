@@ -28,8 +28,8 @@ jobs:
       
     - name: login aliyun arc
       env:
-        HUB_USERNAME: ${{ secrets.USERNAME }}
-        HUB_PASSWORD: ${{ secrets.PASSWORD }}
+        HUB_USERNAME: ${{ secrets.DOCKER_REG_USERNAME }}
+        HUB_PASSWORD: ${{ secrets.DOCKER_REG_PASSWORD }}
       run: |
         docker login --username=${HUB_USERNAME} -p${HUB_PASSWORD} registry.cn-hangzhou.aliyuncs.com
         
