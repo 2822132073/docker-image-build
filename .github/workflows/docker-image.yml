@@ -37,7 +37,6 @@ jobs:
         echo ${{ env.REGISTRY }}
         echo ${{ secrets.REGISTRY }}
         echo ${{ vars.REGISTRY }}
-        echo ${{ asdasd }}
         
 #    - name: tag and push image 
 #      env:
