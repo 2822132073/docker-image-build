@@ -34,7 +34,9 @@ jobs:
         docker login --username=${HUB_USERNAME} -p${HUB_PASSWORD} registry.cn-hangzhou.aliyuncs.com
         
     - name: tag and push image 
+      env:
+        REG: ${{ env.REGISTRY }}
       run: |
-        docker tag ${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }} ${{ env.REGISTRY }}/${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }}
-        docker push ${{ env.REGISTRY }}/${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }}
+        docker tag ${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }} ${{ REG }}/${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }}
+        docker push ${{ REG }}/${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }}
         docker logout
