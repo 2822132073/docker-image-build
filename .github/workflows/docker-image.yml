@@ -35,7 +35,7 @@ jobs:
         
     - name: tag and push image 
       env:
-        REGISTRY: "registry.cn-hangzhou.aliyuncs.com/fengsilin"
+        REGISTRY: registry.cn-hangzhou.aliyuncs.com/fengsilin
       run: |
         docker tag ${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }} ${{ REGISTRY }}/${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }}
         docker push ${{ REGISTRY }}/${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }}
