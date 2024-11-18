@@ -1,0 +1,42 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      image_name:
+        description: 'docker image name'     
+        required: true
+        default: 'test'
+      tags:
+        description: 'docker image tags'
+        required: true
+        default: 'test'
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }}
+      
+    - name: login aliyun arc
+      env:
+        HUB_USERNAME: ${{ secrets.USERNAME }}
+        HUB_PASSWORD: ${{ secrets.PASSWORD }}
+      run: |
+        docker login --username=${HUB_USERNAME} -p${HUB_PASSWORD} registry.cn-hangzhou.aliyuncs.com
+        
+    - name: tag and push image 
+      env:
+        REGISTRY: "registry.cn-hangzhou.aliyuncs.com/fengsilin"
+      run: |
+        docker tag ${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }} ${{ REGISTRY }}/${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }}
+        docker push ${{ REGISTRY }}/${{ github.event.inputs.image_name }}:${{ github.event.inputs.tags }}
+        docker logout
