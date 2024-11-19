@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM python:3.12.5
 RUN apt-get update && \ 
     apt-get install -y curl iproute2 telnet unzip iputils-ping && \
     curl -L https://github.com/mikefarah/yq/releases/latest/download/yq_linux_`dpkg --print-architecture` -o /usr/bin/yq &&\
