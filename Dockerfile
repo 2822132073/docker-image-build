@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.10
 RUN apt-get update && \ 
     apt-get install --no-install-recommends -y curl iproute2 telnet unzip vim iputils-ping && \
     curl -L https://github.com/mikefarah/yq/releases/latest/download/yq_linux_`dpkg --print-architecture` -o /usr/bin/yq &&\
