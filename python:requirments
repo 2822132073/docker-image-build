@@ -1,4 +1,5 @@
 FROM python:3.10
+ADD requirements.txt requirements.txt
 RUN apt-get update && \ 
     apt-get install --no-install-recommends -y libmagic-dev libreoffice poppler-utils tesseract-ocr  curl iproute2 telnet libmagic1 unzip vim iputils-ping && \
     curl -L https://github.com/mikefarah/yq/releases/latest/download/yq_linux_`dpkg --print-architecture` -o /usr/bin/yq &&\
