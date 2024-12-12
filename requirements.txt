@@ -18,3 +18,4 @@ tiktoken
 langchain
 unstructured[all-docs]
 xinference
+opencv-python-headless
