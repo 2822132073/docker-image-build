@@ -10,5 +10,5 @@ RUN apt-get update && \
     pip3 install nltk &&\
     pip3 install -r requirements.txt &&\
     python -m nltk.downloader -d /usr/share/nltk_data all
-RUN apt-get install --no-install-recommends -y ffmpeg libsm6 libxext6 libgl1 
+RUN apt update && apt-get install --no-install-recommends -y ffmpeg libsm6 libxext6 libgl1 
 CMD ["bash"]
